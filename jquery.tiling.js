@@ -8,8 +8,8 @@
 	$.fn.tiling = function(overwrite) {
 
 		if(overwrite) {
-      $.extend(options, overwrite);
-    }
+			$.extend(options, overwrite);
+		}
 
 		return this.each(function() {
 
@@ -111,5 +111,5 @@
 		});
 
 	}
-  
+
 })(jQuery);
