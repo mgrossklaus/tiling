@@ -1,7 +1,8 @@
 (function($){
 
 	var options = {
-		minWidth : 150
+		minWidth	: 150,
+		delay			: 0
 	};
 
 	$.fn.tiling = function(override) {
@@ -35,7 +36,7 @@
 
 						listData = setListData(itemsLength);
 					}
-				}, 100);
+				}, options.delay);
 			});
 
 
