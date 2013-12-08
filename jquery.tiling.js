@@ -1,115 +1,115 @@
 (function($){
 
-	var options = {
-		minWidth	: 150,
-		delay			: 0
-	};
+  var options = {
+    minWidth  : 150,
+    delay     : 0
+  };
 
-	$.fn.tiling = function(overwrite) {
+  $.fn.tiling = function(overwrite) {
 
-		if(overwrite) {
-			$.extend(options, overwrite);
-		}
+    if(overwrite) {
+      $.extend(options, overwrite);
+    }
 
-		return this.each(function() {
+    return this.each(function() {
 
-			var $this					= $(this),
-					$items				= $this.find('li'),
-					itemsLength		= $items.length,
-					resizeTimeout,
-					listData			= setListData(itemsLength);
+      var $this         = $(this),
+          $items        = $this.find('li'),
+          itemsLength   = $items.length,
+          resizeTimeout,
+          listData      = setListData(itemsLength);
 
-			initArrangeList($items, listData);
+      initArrangeList($items, listData);
 
-			$this.find('.list').remove();
+      $this.find('.list').remove();
 
-			window.addEventListener('resize', function() {
+      window.addEventListener('resize', function() {
 
-				clearTimeout(resizeTimeout);
+        clearTimeout(resizeTimeout);
 
-				resizeTimeout = setTimeout(function() {
-					var newListData	= setListData(itemsLength);
+        resizeTimeout = setTimeout(function() {
+          var newListData = setListData(itemsLength);
 
-					if(listData.numsUl !== newListData.numsUl || listData.numItemsInList !== newListData.numItemsInList) {
+          if(listData.numsUl !== newListData.numsUl || listData.numItemsInList !== newListData.numItemsInList) {
 
-						initArrangeList($items, newListData);
+            initArrangeList($items, newListData);
 
-						listData = setListData(itemsLength);
-					}
-				}, options.delay);
-			});
-
-
-			function setListData(itemsLength) {
-
-				var numItemsInList	= calculateHowManyUlsAreNeeded(),
-						numsUl					= Math.ceil(itemsLength / numItemsInList),
-
-						listData	= {
-							'numItemsInList'	: numItemsInList,
-							'numsUl'					: numsUl
-						};
-
-				return listData;
-			}
+            listData = setListData(itemsLength);
+          }
+        }, options.delay);
+      });
 
 
-			function initArrangeList($items, listData) {
-				
-				$this.find('ul').remove();
+      function setListData(itemsLength) {
 
-				arrangeList($items, listData);
-			}
+        var numItemsInList  = calculateHowManyUlsAreNeeded(),
+            numsUl          = Math.ceil(itemsLength / numItemsInList),
 
+            listData  = {
+              'numItemsInList'  : numItemsInList,
+              'numsUl'          : numsUl
+            };
 
-			function arrangeList($items, listData) {
-
-				for(i = 0; i < listData.numsUl; i++) {
-					createList($items, i, listData.numItemsInList);
-				}
-
-				fillList(listData.numItemsInList);
-			}
+        return listData;
+      }
 
 
-			function calculateHowManyUlsAreNeeded() {
+      function initArrangeList($items, listData) {
+        
+        $this.find('ul').remove();
 
-				var windowWidth	= window.innerWidth;
-
-				return Math.ceil(windowWidth / options.minWidth);
-			}
-
-
-			function returnListItems($items, i, numItemsInList) {
-
-				var $items = $items.filter('li:lt('+ (i*numItemsInList+numItemsInList) +')').filter('li:gt('+ (i*numItemsInList) +')');
-
-				return $items;
-			}
+        arrangeList($items, listData);
+      }
 
 
-			function fillList(numItemsInList) {
+      function arrangeList($items, listData) {
 
-				var $last = $this.find('ul:last');
+        for(i = 0; i < listData.numsUl; i++) {
+          createList($items, i, listData.numItemsInList);
+        }
 
-				if($last.find('li').length < numItemsInList-1) {
-					$last.append($('<li>'));
-
-					fillList(numItemsInList);
-				}
-			}
+        fillList(listData.numItemsInList);
+      }
 
 
-			function createList($items, i, numItemsInList) {
+      function calculateHowManyUlsAreNeeded() {
 
-				var $currentItems	= returnListItems($items, i, numItemsInList),
-						$list					= $currentItems.wrapAll('<ul></ul>').parent();
+        var windowWidth = window.innerWidth;
 
-				$this.append($list);
-			}
+        return Math.ceil(windowWidth / options.minWidth);
+      }
 
-		});
 
-	}
+      function returnListItems($items, i, numItemsInList) {
+
+        var $items = $items.filter('li:lt('+ (i*numItemsInList+numItemsInList) +')').filter('li:gt('+ (i*numItemsInList) +')');
+
+        return $items;
+      }
+
+
+      function fillList(numItemsInList) {
+
+        var $last = $this.find('ul:last');
+
+        if($last.find('li').length < numItemsInList-1) {
+          $last.append($('<li>'));
+
+          fillList(numItemsInList);
+        }
+      }
+
+
+      function createList($items, i, numItemsInList) {
+
+        var $currentItems = returnListItems($items, i, numItemsInList),
+            $list         = $currentItems.wrapAll('<ul></ul>').parent();
+
+        $this.append($list);
+      }
+
+    });
+
+  }
 
 })(jQuery);
