@@ -55,6 +55,7 @@
 
 
 			function initArrangeList($items, listData) {
+				
 				$this.find('ul').remove();
 
 				arrangeList($items, listData);
@@ -80,7 +81,6 @@
 
 
 			function returnListItems($items, i, numItemsInList) {
-				console.log('returnListItems()');
 
 				var $items = $items.filter('li:lt('+ (i*numItemsInList+numItemsInList) +')').filter('li:gt('+ (i*numItemsInList) +')');
 
@@ -101,7 +101,6 @@
 
 
 			function createList($items, i, numItemsInList) {
-				console.log('createList()');
 
 				var $currentItems	= returnListItems($items, i, numItemsInList),
 						$list					= $currentItems.wrapAll('<ul></ul>').parent();
