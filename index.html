@@ -8,6 +8,17 @@
 			
 		</ul>
 	</body>
-	 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="jquery.tiling.js"></script>
+	<script>
+	$(window).ready(function() {
+
+		for(i = 0; i < 98; i++) {
+			$('ul').append('<li><img src="http://placehold.it/200x200" alt=""></li>');
+		}
+
+		$('body').tiling();
+
+	});
+	</script>
 </html>

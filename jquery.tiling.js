@@ -1,13 +1,3 @@
-$(window).ready(function() {
-
-	for(i = 0; i < 98; i++) {
-		$('ul').append('<li><img src="http://placehold.it/200x200" alt=""></li>');
-	}
-
-	$('body').tiling();
-
-});
-
 (function($){
 
 	var options = {
