@@ -1,17 +1,17 @@
 ul {
-	display: table;
-	width: 100%;
-	table-layout: fixed;
-	overflow: hidden;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  overflow: hidden;
 }
 li {
-	display: table-cell;
-	width: 12.5%;
-	border: 1px solid #fff;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+  display: table-cell;
+  width: 12.5%;
+  border: 1px solid #fff;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 img {
-	display: block;
-	width: 100%;
+  display: block;
+  width: 100%;
 }
