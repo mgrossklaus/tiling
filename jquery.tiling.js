@@ -5,10 +5,10 @@
 		delay			: 0
 	};
 
-	$.fn.tiling = function(override) {
+	$.fn.tiling = function(overwrite) {
 
-		if(override) {
-      $.extend(options, override);
+		if(overwrite) {
+      $.extend(options, overwrite);
     }
 
 		return this.each(function() {
