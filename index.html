@@ -1,24 +1,26 @@
+<!doctype html>
 <html>
 	<head>
+		<title>jQuery Tiling Plugin</title>
 		<link rel="stylesheet" href="reset.css">
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<ul class="list">
-			
-		</ul>
+		<div class="tiling">
+			<ul class="list"></ul>
+		</div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="jquery.tiling.js"></script>
+		<script>
+			$(window).ready(function() {
+
+				for(i = 0; i < 98; i++) {
+					$('.list').append('<li><img src="http://placehold.it/200x200" alt=""></li>');
+				}
+
+				$('.tiling').tiling();
+
+			});
+		</script>
 	</body>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="jquery.tiling.js"></script>
-	<script>
-	$(window).ready(function() {
-
-		for(i = 0; i < 98; i++) {
-			$('ul').append('<li><img src="http://placehold.it/200x200" alt=""></li>');
-		}
-
-		$('body').tiling();
-
-	});
-	</script>
 </html>
