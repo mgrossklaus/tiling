@@ -16,3 +16,4 @@ Settings
 -------
 
 * minWidth
+* delay
