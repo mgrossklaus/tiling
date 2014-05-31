@@ -14,7 +14,7 @@
     return this.each(function() {
 
       var $this         = $(this),
-          $items        = $this.find('li'),
+          $items        = $this.find('.tile'),
           itemsLength   = $items.length,
           resizeTimeout,
           listData      = setListData(itemsLength);
@@ -55,8 +55,8 @@
 
 
       function initArrangeList($items, listData) {
-        
-        $this.find('ul').remove();
+
+        $this.find('.tiling-list').remove();
 
         arrangeList($items, listData);
       }
@@ -76,24 +76,24 @@
 
         var windowWidth = window.innerWidth;
 
-        return Math.ceil(windowWidth / options.minWidth);
+        return Math.floor(windowWidth / options.minWidth);
       }
 
 
       function returnListItems($items, i, numItemsInList) {
 
-        var $items = $items.filter('li:lt('+ (i*numItemsInList+numItemsInList) +')').filter('li:gt('+ (i*numItemsInList) +')');
+        var $returnItems = $items.filter('.tile:eq('+ i*numItemsInList +'), .tile:gt('+ (i*numItemsInList) +'):lt('+ (i*numItemsInList+numItemsInList-1) +')');
 
-        return $items;
+        return $returnItems;
       }
 
 
       function fillList(numItemsInList) {
 
-        var $last = $this.find('ul:last');
+        var $last = $this.find('.tiling-list:last');
 
-        if($last.find('li').length < numItemsInList-1) {
-          $last.append($('<li>'));
+        if($last.find('.tile').length < numItemsInList) {
+          $last.append($('<li class="tile">'));
 
           fillList(numItemsInList);
         }
@@ -103,7 +103,7 @@
       function createList($items, i, numItemsInList) {
 
         var $currentItems = returnListItems($items, i, numItemsInList),
-            $list         = $currentItems.wrapAll('<ul></ul>').parent();
+            $list         = $currentItems.wrapAll('<ul class="tiling-list"></ul>').parent();
 
         $this.append($list);
       }
